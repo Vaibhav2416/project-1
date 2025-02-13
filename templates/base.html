@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.
+css">
+</head>
+<body style="height: 100vh; display: flex;flex-direction:
+column;justify-content: space-between;">
+<header style="display: flex; justify-content: right; gap: 30px;
+padding: 10px;
+background-color: lightgray;">
+    <div><a href="{{ url_for('home' ) }}"> Home </a></div>
+
+    {% if current_user.is_authenticated %}
+    <div><a href="{{ url_for('dashboard') }}">Dashboard </a> </div>
+    <div><a href="{{ url_for('logout')}}">Logout </a></div>
+
+    {% else %}
+    <div><a href="{{ url_for('register') }}">Register </a> </div>
+    <div><a href="{{ url_for('login' )}}">Login </a> </div>
+
+    {% endif %}
+
+    
+    
+</header>
+<div style="display: flex; justify-content: center;">
+{% block content %}
+{% endblock %}
+</div>
+
+
+
+{% for messages in get_flashed_messages() %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show"
+role="alert">
+{{messages}}
+<button type="button" class="btn-close"
+data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+
+<footer style="text-align: center; background-color: lightsteelblue;">
+<h3>@copyright : 2025 Flask Application</h3>
+</footer>
+</body>
+</html>
+
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle
+.min.js"></script>
